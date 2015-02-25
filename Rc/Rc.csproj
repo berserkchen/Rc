@@ -166,11 +166,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502210427189_InitialCreate.cs" />
-    <Compile Include="Migrations\201502210427189_InitialCreate.Designer.cs">
+    <Compile Include="Controllers\Migrations\201502210427189_InitialCreate.cs" />
+    <Compile Include="Controllers\Migrations\201502210427189_InitialCreate.Designer.cs">
       <DependentUpon>201502210427189_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Controllers\Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cost.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -202,7 +202,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -259,7 +261,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502210427189_InitialCreate.resx">
+    <EmbeddedResource Include="Controllers\Migrations\201502210427189_InitialCreate.resx">
       <DependentUpon>201502210427189_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

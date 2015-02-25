@@ -70,6 +70,15 @@ namespace Rc.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "姓名")]
+        public string FullName { get; set; }
+
+        [Required]
+        [Display(Name = "所在部门")]
+        public string Department { get; set; }
+
+
+        [Required]
         [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
@@ -79,6 +88,8 @@ namespace Rc.Models
         [Display(Name = "确认密码")]
         [Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
         public string ConfirmPassword { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel

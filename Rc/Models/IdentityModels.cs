@@ -16,6 +16,9 @@ namespace Rc.Models
             // 在此处添加自定义用户声明
             return userIdentity;
         }
+        public string FullName { get; set; }
+        public string Department { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
