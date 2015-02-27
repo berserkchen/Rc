@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Rc.Models.Cost>
+﻿@model PagedList.IPagedList<Rc.Models.Cost>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -9,104 +11,37 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Costs", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Column_A)
+            @Html.DisplayNameFor(model => model.First().Column_A)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Column_B)
+            ID编号
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Column_C)
+            @Html.DisplayNameFor(model => model.First().Column_C)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Column_D)
+            @Html.DisplayNameFor(model => model.First().Column_D)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Column_E)
+            @Html.DisplayNameFor(model => model.First().Column_E)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Column_F)
+            @Html.DisplayNameFor(model => model.First().Column_F)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Column_G)
+            @Html.DisplayNameFor(model => model.First().Column_G)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_H)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_I)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_J)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_K)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_L)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_M)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_N)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_O)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_P)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_Q)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_R)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_S)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_T)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_U)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_V)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_W)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_X)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_Y)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_Z)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_AA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_AB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_AC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_AD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_AE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Column_AF)
-        </th>
+
         <th></th>
     </tr>
 
@@ -116,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Column_A)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Column_B)
+            @Html.DisplayFor(modelItem => item.CostID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Column_C)
@@ -133,87 +68,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.Column_G)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.Column_H)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_I)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_J)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_K)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_L)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_M)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_N)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_O)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_P)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_Q)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_R)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_S)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_T)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_U)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_V)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_W)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_X)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_Y)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_Z)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_AA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_AB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_AC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_AD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_AE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Column_AF)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CostID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CostID })
+            @Html.ActionLink("编辑", "Edit", new { id=item.CostID }) |
+            @Html.ActionLink("详细", "Details", new { id=item.CostID }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.CostID })
         </td>
     </tr>
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -9,8 +9,7 @@ namespace Rc.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "Rc.Models.RcContext";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Rc.Models.RcContext context)

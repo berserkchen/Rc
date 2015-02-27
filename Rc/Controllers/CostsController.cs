@@ -7,18 +7,61 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Rc.Models;
+using PagedList;
+
+using System.Data.Entity.Infrastructure;
 
 namespace Rc.Controllers
 {
-    [Authorize]
+    
     public class CostsController : Controller
     {
         private RcContext db = new RcContext();
 
         // GET: Costs
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Costs.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var costs = from s in db.Costs
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                costs = costs.Where(s => s.Column_C.Contains(searchString)
+                                       || s.Column_E.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    costs = costs.OrderByDescending(s => s.Column_C);
+                    break;
+                case "Date":
+                    costs = costs.OrderBy(s => s.Column_C);
+                    break;
+                case "date_desc":
+                    costs = costs.OrderByDescending(s => s.Column_C);
+                    break;
+                default:  // Name ascending 
+                    costs = costs.OrderBy(s => s.CostID);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(costs.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Costs/Details/5
