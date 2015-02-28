@@ -35,8 +35,8 @@ namespace Rc.Models
         [StringLength(50)]
         [Display(Name = "预算主管部门")]
         public String Column_F { get; set; }
-        
 
+        
         [Display(Name = "预算金额")]
         public double? Column_G { get; set; }
         
@@ -128,7 +128,7 @@ namespace Rc.Models
         [Display(Name = "合同变更说明")]
         public String Column_AC { get; set; }
         
-        [DataType(DataType.Currency)]
+        
         [Display(Name = "实际支付金额")]
         public double? Column_AD { get; set; }
         

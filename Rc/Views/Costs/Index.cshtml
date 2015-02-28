@@ -6,16 +6,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>运营成本/费用</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <h4> @Html.ActionLink("新建", "Create")</h4>
 </p>
 @using (Html.BeginForm("Index", "Costs", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="搜索" />
     </p>
 }
 <table class="table">
@@ -79,7 +79,7 @@
 
 </table>
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页 共 @Model.PageCount 页
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
