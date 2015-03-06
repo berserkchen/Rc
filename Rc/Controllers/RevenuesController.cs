@@ -10,7 +10,7 @@ using Rc.Models;
 
 namespace Rc.Controllers
 {
-    [Authorize]
+    
     public class RevenuesController : Controller
     {
         private RcContext db = new RcContext();

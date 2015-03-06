@@ -113,14 +113,17 @@ namespace Rc.Models
         public String Column_Y { get; set; }
 
         [StringLength(50)]
+        [DataType(DataType.Date)]
         [Display(Name = "合同签订日期")]
         public string Column_Z { get; set; }
 
         [StringLength(50)]
+        [DataType(DataType.Date)]
         [Display(Name = "合同生效日期")]
         public string Column_AA { get; set; }
 
         [StringLength(50)]
+        [DataType(DataType.Date)]
         [Display(Name = "合同约定的终止日期")]
         public string Column_AB { get; set; }
         
