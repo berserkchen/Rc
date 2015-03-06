@@ -73,6 +73,7 @@ namespace AspnetIdentitySample.Controllers
             {
                 var user = new ApplicationUser();
                 user.UserName = userViewModel.Email;
+                user.Email = userViewModel.Email;
                 user.Department = userViewModel.Department;
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
