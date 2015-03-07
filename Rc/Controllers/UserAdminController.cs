@@ -73,6 +73,7 @@ namespace AspnetIdentitySample.Controllers
             {
                 var user = new ApplicationUser();
                 user.UserName = userViewModel.Email;
+                user.FullName = userViewModel.FullName;
                 user.Email = userViewModel.Email;
                 user.Department = userViewModel.Department;
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
@@ -131,7 +132,7 @@ namespace AspnetIdentitySample.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "UserName,Id,HomeTown")] ApplicationUser formuser, string id, string RoleId)
+        public async Task<ActionResult> Edit([Bind(Include = "UserName,Id,FullName,Department")] ApplicationUser formuser, string id, string RoleId)
         {
             if (id == null)
             {
@@ -139,7 +140,9 @@ namespace AspnetIdentitySample.Controllers
             }
             ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
             var user = await UserManager.FindByIdAsync(id);
-            user.UserName = formuser.Email;
+            user.UserName = formuser.UserName;
+            user.Email = formuser.UserName;
+            user.FullName = formuser.FullName;
             user.Department = formuser.Department;
             if (ModelState.IsValid)
             {

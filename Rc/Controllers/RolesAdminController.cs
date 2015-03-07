@@ -50,6 +50,7 @@ namespace Rc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var role = await RoleManager.FindByIdAsync(id);
+
             return View(role);
         }
 

@@ -48,6 +48,7 @@ namespace Rc
             //Create User=Admin with password=123456
             var user = new ApplicationUser();
             user.UserName = "chenjian@airchinacargo.com";
+            user.Email = "chenjian@airchinacargo.com";
             user.FullName = "陈建";
             user.Department = "信息管理部";
             var adminresult = UserManager.Create(user, password);
