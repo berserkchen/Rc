@@ -16,7 +16,7 @@ using Microsoft.Owin.Security;
 
 namespace AspnetIdentitySample.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    //[Authorize(Roles = "Admin")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
