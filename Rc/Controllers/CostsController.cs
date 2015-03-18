@@ -10,6 +10,8 @@ using Rc.Models;
 using PagedList;
 
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Rc.Controllers
 {
@@ -17,6 +19,22 @@ namespace Rc.Controllers
     public class CostsController : Controller
     {
         private RcContext db = new RcContext();
+        public CostsController()
+        {
+            context = new ApplicationDbContext();
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+        }
+
+        public CostsController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            UserManager = userManager;
+            RoleManager = roleManager;
+        }
+
+        public UserManager<ApplicationUser> UserManager { get; private set; }
+        public RoleManager<IdentityRole> RoleManager { get; private set; }
+        public ApplicationDbContext context { get; private set; }
 
         // GET: Costs
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
@@ -24,6 +42,17 @@ namespace Rc.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            string dep;
+            var costs = from s in db.Costs
+                        select s;
+            if (User.Identity.GetUserId() != null)
+            {
+                dep = UserManager.FindById(User.Identity.GetUserId()).Department;
+                costs = from s in db.Costs
+                            where s.Column_C == dep
+                            select s;
+            }
+            
 
             if (searchString != null)            {
                 page = 1;
@@ -35,8 +64,7 @@ namespace Rc.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var costs = from s in db.Costs
-                           select s;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 costs = costs.Where(s => s.Column_C.Contains(searchString)

@@ -24,6 +24,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("收入", "Index", "Revenues")</li>
                     <li>@Html.ActionLink("成本", "Index", "Costs")</li>
+                    @if (User.Identity.Name=="chenjian@airchinacargo.com") {<li>@Html.ActionLink("用户管理", "Index", "UsersAdmin")</li>}
+                    @if (User.Identity.Name=="chenjian@airchinacargo.com") {<li>@Html.ActionLink("角色管理", "Index", "RolesAdmin")</li>}
+
                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
