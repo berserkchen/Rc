@@ -52,7 +52,11 @@ namespace Rc.Controllers
                             where s.Column_C == dep
                             select s;
             }
-            
+            if (User.IsInRole("Admin"))
+            {
+                costs = from s in db.Costs
+                        select s;
+            }
 
             if (searchString != null)            {
                 page = 1;
