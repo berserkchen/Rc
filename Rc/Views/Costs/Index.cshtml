@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.First().Column_A)
         </th>
         <th>
-            ID编号
+            @Html.DisplayNameFor(model => model.First().Column_B)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().Column_C)
@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Column_A)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CostID)
+            @Html.DisplayFor(modelItem => item.Column_B)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Column_C)
