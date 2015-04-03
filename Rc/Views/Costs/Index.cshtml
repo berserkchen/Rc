@@ -10,14 +10,19 @@
 
 <p>
     <h4> @Html.ActionLink("新建", "Create")</h4>
+    <button onclick="window.open('/api/Report?year=2014','_self','')">导出</button>
 </p>
+<p>
 @using (Html.BeginForm("Index", "Costs", FormMethod.Get))
 {
-    <p>
+    
         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="搜索" />
-    </p>
+        
+    
 }
+
+</p>
 <table class="table">
     <tr>
         <th>
